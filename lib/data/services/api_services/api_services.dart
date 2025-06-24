@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:api_integration/data/model/multiple_post_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
@@ -20,5 +21,28 @@ class ApiServices {
       return [];
     }
     return [];
+  }
+
+  Future<List<MultiplePostModel>?> getPostWithModel() async {
+    try {
+      Uri url = Uri.parse("https://jsonplaceholder.typicode.com/posts");
+      var response = await http.get(
+        url,
+        headers: {
+          'Content-Type': 'application/json',
+          // 'Authorization': 'Bearer your_token_here', // Uncomment if needed
+        },
+      );
+      if (response.statusCode == 200) {
+        List<MultiplePostModel> model = List<MultiplePostModel>.from(json
+            .decode(response.body)
+            .map((e) => MultiplePostModel.fromJson(e)));
+        return model;
+      }
+    } catch (ex) {
+      debugPrint(ex.toString());
+    }
+
+    return null;
   }
 }

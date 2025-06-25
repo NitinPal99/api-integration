@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:api_integration/data/model/List_model.dart';
 import 'package:api_integration/data/model/multiple_post_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
@@ -44,5 +45,22 @@ class ApiServices {
     }
 
     return null;
+  }
+
+  Future<List<ListModel>?> getListData() async {
+    try {
+      Uri url = Uri.parse("https://jsonplaceholder.typicode.com/comments");
+      var response = await http.get(url, headers: {
+        'Content-Type': 'application/json',
+      });
+      if (response.statusCode == 200) {
+        debugPrint("dta is ${response.body}");
+        List<ListModel> model = List<ListModel>.from(
+            json.decode(response.body).map((e) => ListModel.fromJson(e)));
+        return model;
+      }
+    } catch (ex) {
+      debugPrint(ex.toString());
+    }
   }
 }

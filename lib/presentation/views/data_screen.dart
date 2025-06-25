@@ -40,10 +40,10 @@ class _DataScreenState extends State<DataScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Multiple Data"),
+        title: const Text("Multiple Data"),
       ),
       body: isReady == true
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(),
             )
           : ListView.builder(

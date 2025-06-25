@@ -1,4 +1,5 @@
 import 'package:api_integration/core/constant/app_colors.dart';
+import 'package:api_integration/core/routes/app_routes.dart';
 import 'package:api_integration/data/services/api_services/api_services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -78,7 +79,12 @@ class _CartScreenState extends State<CartScreen> {
                   },
                   decoration: InputDecoration(
                       hintText: "Search by name",
-                      prefixIcon: const Icon(Icons.search),
+                      prefixIcon: InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, AppRoutes.userDataScreen);
+                          },
+                          child: const Icon(Icons.search)),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.r),
                           borderSide:

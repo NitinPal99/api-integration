@@ -29,7 +29,7 @@ class _UserDataScreenState extends State<UserDataScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print("hsajhsjsh ${userDataList}");
+    print("Data: ${userDataList}");
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
